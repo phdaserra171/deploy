@@ -60,7 +60,11 @@ def init_db():
 
 
 # inicializa o banco sempre que o servidor é iniciado
-init_db()
+try:
+    init_db()
+except Exception as e:
+    print(f"⚠️ Aviso ao inicializar banco: {e}")
+    print("Banco será inicializado na primeira requisição")
 
 # rota para salvar dados
 @app.route('/api/save-form', methods=['POST'])
